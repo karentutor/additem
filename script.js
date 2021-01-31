@@ -5,55 +5,50 @@ When they press enter, use the input value and add it as a list item to the unor
 When a user clicks on a list item, the checkbox should fill. And text should turn grey to indicate that it has been "done."
 
 */
+
+/*
+
+  <div class="request-wrapper">
+                    <label class="container">One
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+
+*/
+
 const inputTarget = document.getElementById('inputEl');
-const ulEl = document.getElementById('myRequests');
+const wrapperEl = document.querySelector('.request-wrapper');
+const selectItem = document.querySelectorAll('.choice');
 
 myForm.addEventListener('submit', (e) => {
-
     e.preventDefault();
     const item = inputTarget.value; // get value submitted
     const textNode = document.createTextNode(item); // Create a text node with item
 
-    //Create and append list item to unordered list
-    const liEl = document.createElement('li');
-    ulEl.appendChild(liEl);
+    //Create and append a div to the unordered list
+    const devEl = document.createElement('div');
+    devEl.setAttribute('class', 'choice');
+    wrapperEl.appendChild(devEl);
 
-    //Create a checkbox item and add to liEl above as first inside 
+    //Create and append list item to devEl
+    const labelEl = document.createElement('label');
+    labelEl.setAttribute('class', 'container');
+    labelEl.appendChild(textNode);
+    devEl.appendChild(labelEl);
+
+
+    //Create a checkbox item and add to labelEl above as first inside 
     const inputEl = document.createElement('input');
     inputEl.setAttribute('type', 'checkbox');
-    liEl.insertAdjacentElement('afterbegin', inputEl);
+    labelEl.insertAdjacentElement('beforeend', inputEl);
 
-    //Create a span item and attach inputted item as a child
+    //Create a span item and put as adjacent to input
     const spanEl = document.createElement('span');
-    spanEl.appendChild(textNode);
-    inputEl.insertAdjacentElement('afterend', spanEl);
-    /*
-    //Get item and create  node
-    const item = inputEl.value; // get value submitted
-    //const inputNode = document.createTextNode(item); // Create a text node with it
-
-    //Create checkbox 
-    const checkEl = document.createElement("input"); // Create a input element
-    checkEl.setAttribute("type", "checkbox"); // Make of type checkbox
-
-    //Create a li el and attach text
-    const liEl = document.createElement("li");                 // Create a <li> node
-    liEl.appendChild(inputNode);
-    /*
-        //Add the list element to the ul
-        ulEl.appendChild(liEl);
-    */
-    //Add the checkbox as the first child to the ul
-    //ulEl.insertBefore(checkEl, ulEl.firstChild);
-
-    //checkEl.insertAdjacentElement("afterend", liEl);
-
-    //Add the list element to the ul
-    //ulEl.appendChild(liEl); 
+    spanEl.setAttribute('class', "checkmark");
+    labelEl.insertAdjacentElement('beforeend', spanEl);
 
 });
 
-// <li><input type="checkbox" /><label></li>
-
-
-
+wrapperEl.addEventListener('click', (e) => {
+    e.target.parentNode.classList.toggle('change');
+});
