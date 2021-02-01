@@ -50,5 +50,9 @@ myForm.addEventListener('submit', (e) => {
 });
 
 wrapperEl.addEventListener('click', (e) => {
-    e.target.parentNode.classList.toggle('change');
+
+    if (e.target.tagName == 'SPAN') {
+        e.target.parentNode.parentNode.classList.toggle('change');
+    }
+    else e.target.parentNode.classList.toggle('change');
 });
