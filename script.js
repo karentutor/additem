@@ -6,15 +6,7 @@ When a user clicks on a list item, the checkbox should fill. And text should tur
 
 */
 
-/*
-
-  <div class="request-wrapper">
-                    <label class="container">One
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                    </label>
-
-*/
+/* Javascript */
 
 const inputTarget = document.getElementById('inputEl');
 const wrapperEl = document.querySelector('.request-wrapper');
@@ -56,3 +48,5 @@ wrapperEl.addEventListener('click', (e) => {
     }
     else e.target.parentNode.classList.toggle('change');
 });
+
+

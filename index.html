@@ -29,11 +29,39 @@
         <!-- end section 1-->
     </main>
 
+    <!--- document in javascript -->
+    <!--script src="script.js"></script-->
+
+    <!-- document in JQuery -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="script.js">
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function (e) {
+                e.preventDefault();
+                const item = $('#inputEl').val(); // get value submitted
 
-  // INSERT CODE HERE
+                // append item in a list with label to the request wrapper
+                $('.request-wrapper').append(`
+                    <div class="choice">
+                        <label class="container">
+                            <input type="checkbox">${item}
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>        
+                `)
+            });
 
+            $('.request-wrapper').click(function (e) {
+
+                const target = $(e.target);
+
+                if (target.is('span')) {
+                    target.parent().parent().toggleClass('change');
+                }
+                else target.parent().toggleClass('change');
+
+            });
+        });
     </script>
 </body>
 
