@@ -17,7 +17,7 @@
                 <h1>jQuery To-Do Application</h1>
             </div>
             <form id="myForm">
-                <p>Please enter an item:
+                <p id="enter">Please enter an item:
                     <input id="inputEl" class="form-control" type="text" placeholder="Add an item...">
                 </p>
                 <p class="subheading">My Requests:</p>
@@ -29,38 +29,45 @@
         <!-- end section 1-->
     </main>
 
-    <!--- document in javascript -->
+    <!--- uncomment to see document using javascript without enhanced functionality-->
     <!--script src="script.js"></script-->
 
     <!-- document in JQuery -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
         $(document).ready(function () {
+
+
             $("form").submit(function (e) {
                 e.preventDefault();
-                const item = $('#inputEl').val(); // get value submitted
 
+                if ($('#inputEl').val() == "") {
+                    $('#enter').after(`<div class="error">Please enter a value<div>`);
+                    return;
+                }
+
+                $('.error').remove();
+                const item = $('#inputEl').val(); // get value submitted
                 // append item in a list with label to the request wrapper
+                // label is used to make checkmark function correctly
                 $('.request-wrapper').append(`
-                    <div class="choice">
-                        <label class="container">
-                            <input type="checkbox">${item}
+                    <ul class="choice">
+                        <li class="container">
+                            <label>   
+                            <input type="checkbox"><div class="textNode">${item}</div>
                             <span class="checkmark"></span>
-                        </label>
-                    </div>        
+                            </label>
+                            <div class="delete">Delete</div>
+                        </li>
+                    </ul>        
                 `)
             });
 
-            $('.request-wrapper').click(function (e) {
-
-                const target = $(e.target);
-
-                if (target.is('span')) {
-                    target.parent().parent().toggleClass('change');
-                }
-                else target.parent().toggleClass('change');
-
+            $(document).on('click', 'div.delete', function (e) {
+                e.preventDefault();
+                $(this).parent().remove();
             });
+
         });
     </script>
 </body>

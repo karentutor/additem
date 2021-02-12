@@ -35,9 +35,10 @@ form {
 form .subheading {
     margin-bottom: 0%;
 }
+
  /* Customize the label (the container) */
  .container {
-    display: block;
+    display: flex;
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
@@ -75,7 +76,12 @@ form .subheading {
   
   /* When the checkbox is checked, add a blue background */
   .container input:checked ~ .checkmark {
-    background-color: red;
+    background-color: pink;
+
+  }
+
+  .container input:checked ~ .textNode {
+    color: gray;
   }
   
   /* Create the checkmark/indicator (hidden when not checked) */
@@ -103,6 +109,15 @@ form .subheading {
     transform: rotate(45deg);
   } 
 
-  .change {
+  .error {
     color: red;
   }
+
+  .delete {
+    position: relative;
+    left: 1rem;
+    color: gray;
+  }
+  .delete:hover {
+    color: red;
+  } 
